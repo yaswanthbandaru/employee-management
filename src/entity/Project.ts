@@ -3,7 +3,7 @@ import { Organization } from "./Organization";
 import { Employee } from "./Employee";
 import { Task } from "./Task";
 
-@Entity()
+@Entity({ schema: "app_emp"})
 export class Project {
     @PrimaryGeneratedColumn()
     id: number 

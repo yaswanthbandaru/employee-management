@@ -2,7 +2,7 @@ import { PrimaryGeneratedColumn, Column, Entity, ManyToOne, ManyToMany } from "t
 import { Project } from "./Project";
 import { Employee } from "./Employee";
 
-@Entity()
+@Entity({ schema: "app_emp"})
 export class Task {
     @PrimaryGeneratedColumn()
     id: number 

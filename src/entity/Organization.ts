@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Employee } from "./Employee";
 import { Project } from "./Project";
 
-@Entity()
+@Entity({ schema: "app_emp"})
 export class Organization {
     @PrimaryGeneratedColumn()
     id: number

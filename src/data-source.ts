@@ -7,9 +7,9 @@ export const AppDataSource = new DataSource({
     port: 5432,
     username: "postgres",
     password: "avatar007",
-    synchronize: true,
+    synchronize: false,
     logging: false,
     entities: ["./src/entity/*.ts"],
-    migrations: ["./src/migration/*.ts"],
+    migrations: ["./src/migrations/*.ts"],
     subscribers: [],
 })
