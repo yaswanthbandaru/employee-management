@@ -75,7 +75,7 @@ type Query implements Node {
     A condition to be used in determining which values should be returned by the collection.
     """
     condition: EmployeeProjectsProjectCondition
-  ): EmployeeProjectsProjectsConnection 
+  ): EmployeeProjectsProjectsConnection
 
   """Reads and enables pagination through a set of `EmployeeTasksTask`."""
   allEmployeeTasksTasks(
@@ -196,7 +196,7 @@ type Query implements Node {
   employeeProjectsProjectByEmployeeIdAndProjectId(employeeId: Int!, projectId: Int!): EmployeeProjectsProject
   employeeTasksTaskByEmployeeIdAndTaskId(employeeId: Int!, taskId: Int!): EmployeeTasksTask
   organizationById(id: Int!): Organization
-  projectById(id: Int!): Project 
+  projectById(id: Int!): Project
   taskById(id: Int!): Task
 
   """Reads a single `Employee` using its globally unique `ID`."""
@@ -1230,6 +1230,7 @@ type Mutation {
     """
     input: DeleteTaskByIdInput!
   ): DeleteTaskPayload
+  addEmployee(numberOfEmployees: Int!): Employee
 }
 
 """The output of our create `Employee` mutation."""

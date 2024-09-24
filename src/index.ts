@@ -8,10 +8,7 @@ const port = process.env.PORT
 
 
 AppDataSource.initialize().then(async () => {
-
     console.log("Connected to the database...")
-
-    
 }).catch(error => console.log(error))
 
 app.use(post_graphile)
