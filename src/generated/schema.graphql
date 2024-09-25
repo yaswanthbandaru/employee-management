@@ -1230,7 +1230,7 @@ type Mutation {
     """
     input: DeleteTaskByIdInput!
   ): DeleteTaskPayload
-  addEmployee(numberOfEmployees: Int!): Employee
+  addEmployee: Employee
 }
 
 """The output of our create `Employee` mutation."""
