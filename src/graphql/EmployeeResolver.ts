@@ -1,49 +1,31 @@
-import { data } from "../data"
 import { Employee } from "../entity/Employee"
 import { AppDataSource } from "../data-source"
-import { getEmail } from "../service/getEmail"
 import { checkEmailExists } from "../service/CheckEmployeeExists"
-import { error } from 'console'
+import { createEmployee } from "../service/CreateEmployeeService"
 
 
 export const EmployeeResolver = {
     Mutation: {
-        addEmployee: async (_, { numberOfEmployees } ) => {
-            let count = 0;
-            const employeeData = data.data 
+        addEmployee: async (_, { numberOfEmployees=1  } ) => {
 
-            employeeData.forEach((data) => {
-                (data as any).isAdded = false
-            })
+            const employee = createEmployee();
 
-            console.log("\nLenght of the data:", employeeData.length)
+            const newEmployee = {
+                name: employee.employee_name,
+                department: employee.employee_department,
+                salary: employee.employee_salary,
+                email: employee.employee_email,
+                phoneNumber: employee.employee_phoneNumber,
+                organizationId: 1
+            }
 
-            const Data : Employee[] = []
-
-            for(const employeeOne of employeeData) {
-                const newEmployee = {
-                    name: employeeOne.employee_name,
-                    department: "Engineering",
-                    salary: employeeOne.employee_salary,
-                    email: getEmail(employeeOne.employee_name),
-                    phoneNumber: "123-456-7890",
-                    organizationId: 1
-                }
-                
-                
-                if ( count < numberOfEmployees) {
-                    let bool = await checkEmailExists(newEmployee.email)
-                    console.log("bool: ", bool, "\tcount: ", count, " ", newEmployee.name, newEmployee.email)
-                    // bool = false
-                    count += 1
-                    const employeeRepository = AppDataSource.getRepository(Employee)
-                    const employee = employeeRepository.create(newEmployee)
-                    await employeeRepository.save(employee)
-                    return employee
-                    if( !!bool ) {
-                    }
-
-                }    
+            let bool = await checkEmailExists(newEmployee.email)
+            console.log("Does email exist?", bool)
+            if(!bool){
+                const employeeRepository = AppDataSource.getRepository(Employee)
+                const employee = employeeRepository.create(newEmployee)
+                await employeeRepository.save(employee)
+                return employee
             }
         }
     }
